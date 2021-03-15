@@ -10,7 +10,7 @@ import primitives.*;
 import static primitives.Util.*;
 /**
  * Unit tests for primitives.Vector class
- * @author Rivka&Ora
+ * @author Rivka&Oranamati
  *
  */
 public class VectorTest
