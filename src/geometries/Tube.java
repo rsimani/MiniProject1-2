@@ -15,7 +15,7 @@ public class Tube implements Geometry
        this._radius=radius;
         this._axisRay = new Ray(ray);
     }
-    public Vector getNormal(Point3D point) 
+    public Vector getNormal(Point3D point)
     {
         //The vector from the point of the cylinder to the given point
         Point3D o = _axisRay.getOriginPoint(); // at this point o = p0
@@ -25,16 +25,14 @@ public class Tube implements Geometry
 
         //We need the projection to multiply the _direction unit vector
         double projection = vector1.dotProduct(v);
-        if (!isZero(projection))
-        {
+        if (!isZero(projection)) {
             // projection of P-O on the ray:
             o = o.add(v.scale(projection));
         }
 
         //This vector is orthogonal to the _direction vector.
-       /* Vector check = point.subtract(o);*/
-       /* return check.normalize();*/
-        return null;
+        Vector check = point.subtract(o);
+        return check.normalize();
     }
     public Ray getAxisRay() 
     {

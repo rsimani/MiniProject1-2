@@ -13,10 +13,10 @@ public class Sphere implements Geometry
 	        this._center = new Point3D(center);
 
 	    }
-	    public Vector getNormal(Point3D point)
-	    {
-	        /*Vector normal = point.subtract(_center);*/
-	        return null;/*normal.normalize();*/
+	  
+	   public Vector getNormal(Point3D point) {
+	        Vector normal = point.subtract(_center);
+	        return normal.normalize();
 	    }
 	    public Point3D getCenter()
 	    {

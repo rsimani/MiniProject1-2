@@ -10,7 +10,7 @@ public class Plane implements Geometry
     Vector _normal;
     public Vector getNormal(Point3D p)
     {
-        return null;/*_normal*/
+        return _normal;
     }
     public Point3D get_p()
     {
