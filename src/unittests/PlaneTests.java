@@ -13,7 +13,7 @@ import primitives.Point3D;
 import primitives.Vector;
 
 /**
- * @author Rivka
+ * @author Rivka&Ora
  *
  */
 public class PlaneTests {

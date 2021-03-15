@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- * @author Rivka
+ * @author Rivka&Ora
  *
  */
 public class SphereTests {
