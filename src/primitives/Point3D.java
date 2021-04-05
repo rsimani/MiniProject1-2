@@ -22,6 +22,19 @@ public class Point3D
 	        this.y = new Coordinate(y);
 	        this.z = new Coordinate(z);
 	    }
+	    /*--------------------------------------------------getters and setters------------------------------------------------------*/
+
+	    public Coordinate getX() {
+	        return x;
+	    }
+
+	    public Coordinate getY() {
+	        return  y;
+	    }
+
+	    public Coordinate getZ() {
+	        return z;
+	    }
 
 	    public Vector subtract(Point3D otherPoint3D) 
 	    {

@@ -1,6 +1,6 @@
 package geometries;
-import primitives.Point3D;
-import primitives.Vector;
+import primitives.*;
+import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 import java.util.List;
 
@@ -64,4 +64,34 @@ public class Polygon implements Geometry
 	        }
 	        return result.toString();
 	    }
-}
+
+	    /* @return list of the intersection that cut with the polygon */
+	   
+	    public List<Point3D> findIntsersections(Ray ray) 
+	    {
+	        List<Point3D> intersections = plane.findIntsersections(ray);
+	        if (intersections == null) return null;
+
+	        Point3D p0 = ray.getOriginPoint();
+	        Vector v = ray.getDirection();
+
+	        Vector v1  =vertices.get(1).subtract(p0);
+	        Vector v2 = vertices.get(0).subtract(p0);
+	        double sign = v.dotProduct(v1.crossProduct(v2));
+	        if (isZero(sign))
+	            return null;
+
+	        boolean positive = sign > 0;
+
+	        for (int i = vertices.size() - 1; i > 0; --i) {
+	            v1 = v2;
+	            v2 = vertices.get(i).subtract(p0);
+	            sign = alignZero(v.dotProduct(v1.crossProduct(v2)));
+	            if (isZero(sign)) return null;
+	            if (positive != (sign >0)) return null;
+	        }
+
+	        return intersections;
+	    }
+	}
+

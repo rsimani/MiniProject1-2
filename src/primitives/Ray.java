@@ -1,5 +1,5 @@
 package primitives;
-
+import static primitives.Util.isZero;
 public class Ray 
 {
 	private final Point3D p0;
@@ -41,5 +41,8 @@ public String toString()
 {
     return "point: " + p0 + ", direction: " + dir;
 }
-
+public Point3D getPoint(double length) 
+{
+     return isZero(length ) ?p0 : p0.add(dir.scale(length));
+}
 }

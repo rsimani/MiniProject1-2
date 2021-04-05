@@ -13,6 +13,13 @@ public final class Coordinate
         this.coord = alignZero(coord);
     }
 
+    /*--------------------------------------------------getters and setters------------------------------------------------------*/
+
+    public double get() 
+    {
+        return coord;
+    }
+
    
     public boolean equals(Object obj) {
         if (this == obj) return true;
