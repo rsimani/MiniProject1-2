@@ -6,11 +6,12 @@ import org.junit.Test;
 import primitives.Color;
 /**
  * Testing ImageWriter
- * @author Rivka
+ * @author Rivka simani
  *
  */
 
-public class ImageWriterTest {
+public class ImageWriterTest
+{
 	@Test
     public void ImageWiterWriteToImageTest()
     {
