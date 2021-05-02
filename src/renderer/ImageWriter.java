@@ -41,7 +41,6 @@ public class ImageWriter
 		this.imageName = imageName;
 		this.nX = nX;
 		this.nY = nY;
-
 		image = new BufferedImage(nX, nY, BufferedImage.TYPE_INT_RGB);
 	}
 
@@ -89,9 +88,9 @@ public class ImageWriter
 	 * @param yIndex Y axis index of the pixel
 	 * @param color  final color of the pixel
 	 */
-	public void writePixel(int xIndex, int yIndex, Color color) 
+	public void writePixel(int xIndex, int yIndex, java.awt.Color color) 
 	{
-		image.setRGB(xIndex, yIndex, color.getColor().getRGB());
+		image.setRGB(xIndex, yIndex, color.getRGB());
 	}
 
 }
