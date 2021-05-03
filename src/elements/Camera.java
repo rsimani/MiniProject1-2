@@ -24,7 +24,7 @@ public class Camera
      */
 	public Point3D getP0() 
 	{
-		return p0;
+		return new Point3D(p0);
 	}
 	/**
      * Returns the Vector value of getVup
@@ -32,7 +32,7 @@ public class Camera
      */
 	public Vector getVup() 
 	{
-		return vup.normalize();
+		return new Vector(vup);
 	}
 	/**
      * Returns the Vector value of getVto
@@ -40,7 +40,7 @@ public class Camera
      */
 	public Vector getVto() 
 	{
-		return vto.normalize();
+		return new Vector(vto);
 	}
 	
 	/**
@@ -49,7 +49,7 @@ public class Camera
      */
 	public Vector getVright()
 	{
-		return vright.normalize();
+		return new Vector(vright);
 	}
 	/**
      * Returns the value of width
@@ -85,10 +85,11 @@ public class Camera
 	{
 		if(vto.dotProduct(vup)!=0)
 			throw new IllegalArgumentException("The vectors are not orthogonals!");
-		p0=new Point3D(p0);
-		vto=vto.normalized();
-		vup=vup.normalized();
-		vright=(vto.crossProduct(vup)).normalized();
+		this.p0=new Point3D(p0);
+		
+		this.vto=vto.normalized();
+		this.vup=vup.normalized();
+		vright=(this.vto.crossProduct(this.vup)).normalized();
 	}
 	/**
      * set the value of width and height

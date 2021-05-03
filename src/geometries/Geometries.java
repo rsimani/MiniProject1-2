@@ -33,14 +33,15 @@ public class Geometries implements Intersectable
 	    public List<Intersectable> getGeometries(){
 	        return _geometries;
 	    }
-	    */
+	    *//*
 	   public List<Point3D> findIntersections(Ray ray)
 	    {
 		   List<Point3D> intersections = null;
 	    	return intersections;
 	    }
 	    /* @return list of the intersection that cut with the geometry */
-    @Override
+   /// @Override
+   
     public List<Point3D> findIntsersections(Ray ray) 
     {
         List<Point3D> intersections = new ArrayList<Point3D>();
