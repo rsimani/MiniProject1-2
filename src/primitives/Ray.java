@@ -1,6 +1,6 @@
 package primitives;
 import static primitives.Util.isZero;
-
+import geometries.Intersectable.GeoPoint;
 import java.util.List;
 public class Ray 
 {
@@ -63,5 +63,35 @@ public Point3D findClosestPoint(List<Point3D> points)
     }
     return result;
 }
+
+/**
+ * chek which point is the closest to the camera
+ * @param points list of all the points
+ * @return the closest cutting point with p0
+ */
+
+public GeoPoint findClosestGeoPoint(List<GeoPoint> points) 
+{
+	if (!points.isEmpty())
+	{
+		GeoPoint closest = points.get(0);
+		double d = this.p0.distance(points.get(0)._point);
+		double temp;
+		for (int i = 1; i < points.size(); i++) 
+		{
+			temp = this.p0.distance(points.get(i)._point);
+			if (temp < d)
+			{
+				d = temp;
+				closest = points.get(i);
+			}
+		}
+		return closest;
+	} else
+		return null;
+}
+
+
+
 
 }

@@ -12,77 +12,125 @@ import java.util.List;
 public class PlaneTests
 {
 
+	
+	/**
+	 * Test method for {@link geometries.Plane#getNormal()}.
+	 */
+	@Test
+	public void testGetNormal() {
+
+		// ============ Equivalence Partitions Tests ==============
+
+		Point3D point = new Point3D(1, 2, 3);
+		Vector vector = new Vector(2, 4, 7);
+		Plane plane = new Plane(point, vector);
+
+		// Test if the normal of the plane is normalized
+
+		assertEquals("Test fails, the normal of the plane is not normalized", 1, plane.get_normal().length(), 0.0000001);
+	}
+
 	/**
 	 * Test method for {@link geometries.Plane#getNormal(primitives.Point3D)}.
 	 */
 	@Test
-	public void testGetNormal() 
-	{
-		Plane pl=new Plane(new Point3D(1,1,1),new Vector(2,0,0));
-	
-	        assertNotEquals(
-	        		"Plane.getNormal() result is wrong",
-	        		new Vector(1,0, 0),
-	        		pl.getNormal(new Point3D(1, 1, 1)));
+	public void testGetNormalPoint3D() {
+
+		// ============ Equivalence Partitions Tests ==============
+
+		Point3D point = new Point3D(1, 2, 3);
+		Vector vector1 = new Vector(2, 4, 7);
+		Plane plane = new Plane(point, vector1);
+		Vector vector2 = plane.getNormal(point);
+
+		// Test if the normal of the plane is normalized
+
+		assertEquals("Test fails, the normal is not normalized", 1, vector2.length(), 0.0000001);
+
 	}
+
+	/**
+	 * Test method for {@link geometries.Plane#findIntsersections(Ray ray)}.
+	 */
 	@Test
-	   public void findIntsersections()
-	{
-	       Plane plane = new Plane(new Point3D(1, 0, 0), new Point3D(0, 0, 0), new Point3D(0, 0, 1));
-	       Point3D point;
+	public void testFindIntsersections() {
+		Point3D point1 = new Point3D(0, 0, -1);
+		Point3D point2 = new Point3D(1, 0, -1);
+		Point3D point3 = new Point3D(0, 0, 1);
+		Point3D point4 = new Point3D(0, 0, -2);
+		Point3D point5 = new Point3D(1, 0, -2);
+		Vector vector1 = new Vector(0, 0, 1);
+		Vector vector2 = new Vector(1, 0, 0);
+		Vector vector3 = new Vector(1, 0, -1);
+		Vector vector4 = new Vector(1, 2, 1);
+		Plane plane = new Plane(point1, vector1);
 
-	       // ============ Equivalence Partitions Tests ==============
-	       // TC01: Ray intersects the plane
-	       List<Point3D> result = plane.findIntsersections(new Ray(new Point3D(0, -2, 0),new Vector(1, 1, 1)));
-	       assertEquals("Wrong number of points", 1, result.size());
-	       point = new Point3D(2, 0, 2);
-	       assertEquals("Ray does not intersect the plane", List.of(point), result);
+		// ============ Equivalence Partitions Tests ==============
+		// Ray intersects the plane
+		Ray ray1 = new Ray(point5, vector4);
+		List<Point3D> point3DList1 = plane.findIntersections(ray1);
+		assertEquals("The test failed, the function found more than one intersection point", 1, point3DList1.size(),
+				0.1);
+		assertTrue("The test failed, the function did not find what it was looking for",
+				point3DList1.get(0).equals(new Point3D(2, 2, -1)));
+		// ============ Equivalence Partitions Tests ==============
+		// Ray does not intersect the plane
+		Ray ray2 = new Ray(point3, vector4);
+		List<Point3D> point3DList2 = plane.findIntersections(ray2);
+		if (point3DList2 != null) {
+			fail("The test failed, the function found intersection point");
+		}
+		// =============== Boundary Values Tests ==================
+		// the ray is parallel and included in the plane
+		Ray ray3 = new Ray(point1, vector2);
+		List<Point3D> point3DList3 = plane.findIntersections(ray3);
+		if (point3DList3 != null) {
+			fail("The test failed, the function found intersection point");
+		}
+		// =============== Boundary Values Tests ==================
+		// the ray is parallel and not included in the plane
+		Ray ray4 = new Ray(point3, vector2);
+		List<Point3D> point3DList4 = plane.findIntersections(ray4);
+		if (point3DList4 != null) {
+			fail("The test failed, the function found intersection point");
+		}
+		// =============== Boundary Values Tests ==================
+		// Ray is orthogonal to the plane ,before the plane
+		Ray ray5 = new Ray(point4, vector1);
+		List<Point3D> point3DList5 = plane.findIntersections(ray5);
+		assertEquals("The test failed, the function found more than one intersection point", 1, point3DList5.size(),
+				0.1);
+		assertTrue("The test failed, the function did not find what it was looking for",
+				point3DList5.get(0).equals(new Point3D(0, 0, -1)));
+		// =============== Boundary Values Tests ==================
+		// Ray is orthogonal to the plane ,in the plane
+		Ray ray6 = new Ray(point1, vector1);
+		List<Point3D> point3DList6 = plane.findIntersections(ray6);
+		if (point3DList6 != null) {
+			fail("The test failed, the function found intersection point");
+		}
+		// =============== Boundary Values Tests ==================
+		// Ray is orthogonal to the plane ,after the plane
+		Ray ray7 = new Ray(point3, vector1);
+		List<Point3D> point3DList7 = plane.findIntersections(ray7);
+		if (point3DList7 != null) {
+			fail("The test failed, the function found intersection point");
+		}
+		// =============== Boundary Values Tests ==================
+		// Ray is neither orthogonal nor parallel to the plane, and begins in the plane
+		Ray ray8 = new Ray(point2, vector3);
+		List<Point3D> point3DList8 = plane.findIntersections(ray8);
+		if (point3DList8 != null) {
+			fail("The test failed, the function found intersection point");
+		}
+		// =============== Boundary Values Tests ==================
+		// Ray is neither orthogonal nor parallel to the plane and begins in
+		// the same point which appears as reference point in the plane
+		Ray ray9 = new Ray(point1, vector3);
+		List<Point3D> point3DList9 = plane.findIntersections(ray9);
+		if (point3DList9 != null) {
+			fail("The test failed, the function found intersection point");
+		}
+	}
 
-	       // TC02: Ray does not intersect the plane
-	       result = plane.findIntsersections(new Ray(new Point3D(0, -2, 0),new Vector(-1, 0, 0)));
-	       assertNull("Ray intersects the plane", result);
-
-
-	       // =============== Boundary Values Tests ==================
-	       // **** Group: Ray is parallel to the plane
-	       // TC3: the ray included in the plane
-	       assertNull("the ray doesn't included in the plane", 
-	       		plane.findIntsersections(new Ray(new Point3D(-2, 0, 0),new Vector(2, 0, 2))));
-
-	       // TC4: the ray does not included in the plane
-	       assertNull("the ray included in the plane", plane.findIntsersections(new Ray(new Point3D(0, 1, 0),new Vector(2, 1, 2))));
-
-	       
-	 //Ray is orthogonal to the plane
-	       
-	       // TC5: Ray starts before the plane
-	       Ray r5 = new Ray(new Point3D(0, 1, 0),new Vector(0, -2, 0));
-	       assertEquals("the ray doesn't orthogonal to the plane", 0, new Vector(2, 0, 2).dotProduct(r5.getDirection().normalize()), 0);
-	       assertEquals("the ray doesn't orthogonal to the plane", 1, (plane.findIntsersections(r5)).size());
-	       List<Point3D> result5= plane.findIntsersections(r5);
-	       Point3D point5 = new Point3D(0, 0, 0);
-	       assertEquals("the ray is orthogonal and starts before the plane", List.of(point5), result5);
-
-	       // TC6: Ray starts in the plane
-	       Ray r6 = new Ray(new Point3D(0, 0, 0),new Vector(0, -2, 0));
-	       assertEquals("the ray doesn't orthogonal to the plane", 0, new Vector(2, 0, 2).dotProduct(r6.getDirection().normalize()), 0);
-	       assertNull("the ray is orthogonal and starts in the plane", plane.findIntsersections(r6));
-
-	       // TC7: Ray starts after the plane
-	       Ray r7 = new Ray(new Point3D(0, -1, 0),new Vector(0, -2, 0));
-	       assertEquals("the ray doesn't orthogonal to the plane", 0, new Vector(2, 0, 2).dotProduct(r7.getDirection().normalize()), 0);
-	       assertNull("the ray is orthogonal and starts after the plane", plane.findIntsersections(r7));
-
-	       // **** Group: Ray is neither orthogonal nor parallel to the plane
-
-	       // TC8: Ray begins at the plane
-	       Ray r8 = new Ray(new Point3D(0, 0, 0),new Vector(4, -2, 3));
-	       assertNull("in, and not parallel or orthogonal, start on p0", plane.findIntsersections(r8));
-
-	       // TC9: Ray begins in the same point which appears as reference point in the plane
-	       Ray r9 = new Ray(new Point3D(1, 0, 0),new Vector(4, -2, 3));
-	       assertNull("in,  and not parallel or orthogonal, start on reference point", plane.findIntsersections(r9));
-
-
-	   }
 }

@@ -87,11 +87,13 @@ public class ImageWriter
 	 * @param xIndex X axis index of the pixel
 	 * @param yIndex Y axis index of the pixel
 	 * @param color  final color of the pixel
+	
 	 */
+	/*
 	public void writePixel(int xIndex, int yIndex, java.awt.Color color) 
 	{
 		image.setRGB(xIndex, yIndex, color.getRGB());
-	}
+	}*/
 	public void writePixel(int xIndex, int yIndex,Color color) 
 	{
 		image.setRGB(xIndex, yIndex, color.getColor().getRGB());
@@ -99,4 +101,14 @@ public class ImageWriter
 
 
 }
+
+
+
+
+
+
+
+
+
+
 

@@ -1,17 +1,33 @@
 package elements;
 import primitives.Color;
-
-public class AmbientLight 
+/**
+ * ambient light
+ * 
+ * @author Rivka Simani-Bohbot
+ *
+ */
+public class AmbientLight extends Light
 {
-	Color _intensity ;
-    public  AmbientLight(Color IA, double KA)
-    {
-        _intensity=IA.scale(KA);
-    }
 
-    public Color get_intensity() 
-    {
-        return _intensity;
-    }
+	/**
+	 * Constructor
+	 * 
+	 * @param IA - light of original filling
+	 * @param KA - Coefficient of attenuation of filler light
+	 */
+	public AmbientLight(Color IA, double KA)
+	{
+		super(IA.scale(KA));
+	}
+	/**
+	 * A default constructor
+	 */
+	public AmbientLight() {
+		super(Color.BLACK);
+	}
+
+ 
 
 }
+
+

@@ -2,7 +2,7 @@ package geometries;
 import primitives.*;
 import java.util.List;
 import static primitives.Util.isZero;
-public class Tube implements Geometry 
+public class Tube extends Geometry 
 {
 	Ray _axisRay;
 	double _radius;
@@ -44,9 +44,11 @@ public class Tube implements Geometry
         return "ray: " + _axisRay +
                 ", radius: " + _radius;
     }
-    /* @return list of the intersection that cut with the tube */
+   
+
 	@Override
-	public List<Point3D> findIntsersections(Ray ray) {
+	public List<GeoPoint> findGeoIntsersections(Ray ray) 
+	{
 		Vector vTube = _axisRay.getDirection();
         Vector vectorV0;
         Vector vXvTube;
@@ -67,7 +69,11 @@ public class Tube implements Geometry
             vXvTube = new Vector(0,0,0);
         }
 
-    
+        // Cylinder [Ray(Point A,Vector V), r].
+        // Point P on infinite cylinder if ((P - A) x (V))^2 = r^2 * V^2
+        // P = O + t * V1
+        // expand : ((O - A) x (V) + t * (V1 x V))^2 = r^2 * V^2
+
         double vTube2 = Util.alignZero(vTube.lengthSquared());
         double a = Util.alignZero(vXvTube.lengthSquared());
         double b = Util.alignZero(2 * vXvTube.dotProduct(rayDirXvTube));
@@ -80,11 +86,12 @@ public class Tube implements Geometry
         double t2 = Util.alignZero((-b + Math.sqrt(d)) / (2 * a));
         if (t1 <= 0 && t2 <= 0) return null;
         if (t1 > 0 && t2 > 0)
-            return List.of(ray.getPoint(t1), ray.getPoint(t2));
+        	return List.of(new GeoPoint(this, ray.getPoint(t1)), new GeoPoint(this, ray.getPoint(t2)));
         if (t1 > 0)
-            return List.of(ray.getPoint(t1));
+            return List.of(new GeoPoint(this, ray.getPoint(t1)));
         else
-            return List.of(ray.getPoint(t2));
+            return List.of(new GeoPoint(this, ray.getPoint(t2)));
     }
 }
+
 

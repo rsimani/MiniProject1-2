@@ -1,9 +1,7 @@
 package geometries;
 import java.util.ArrayList;
 import java.util.List;
-
-import primitives.Point3D;
-import primitives.Ray;
+import primitives.*;
 public class Geometries implements Intersectable
 {
 	 private  List<Intersectable> _geometries =new ArrayList<>() ;
@@ -27,29 +25,16 @@ public class Geometries implements Intersectable
 	        }
 	    }
 
-	  /*get geometries
-	  @return geometries list
-	     
-	    public List<Intersectable> getGeometries(){
-	        return _geometries;
-	    }
-	    *//*
-	   public List<Point3D> findIntersections(Ray ray)
-	    {
-		   List<Point3D> intersections = null;
-	    	return intersections;
-	    }
-	    /* @return list of the intersection that cut with the geometry */
-   /// @Override
-   
-    public List<Point3D> findIntsersections(Ray ray) 
-    {
-        List<Point3D> intersections = new ArrayList<Point3D>();
 
-        for (Intersectable geometry : _geometries) 
-        {
-            List<Point3D> result = geometry.findIntsersections(ray);
-            if (result != null) {
+    @Override
+    public List<GeoPoint> findGeoIntsersections(Ray ray)
+    {
+        List<GeoPoint> intersections = new ArrayList<GeoPoint>();
+
+        for (Intersectable geometry : _geometries) {
+            List<GeoPoint> result = geometry.findGeoIntsersections(ray);
+            if (result != null) 
+            {
                 intersections.addAll(result);
             }
         }
@@ -59,6 +44,7 @@ public class Geometries implements Intersectable
     }
 
 }
+
 
 
 

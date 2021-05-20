@@ -1,6 +1,9 @@
 
 package unittests;
 import static org.junit.Assert.*;
+
+import java.util.List;
+
 import org.junit.Test;
 import geometries.*;
 import primitives.*;
@@ -91,34 +94,70 @@ public class PolygonTests
 	    assertEquals("Bad normal to trinagle", new Vector(sqrt3, sqrt3, sqrt3), pl.getNormal(new Point3D(0, 0, 1)));
 	
 	}
-	   @Test
-	    public void findIntsersections() 
-	   {
-	    	Polygon polygon =new Polygon(new Point3D(1,0,1),new Point3D(1,0,0), new Point3D(3,0,0),new Point3D(3, 0, 1));
-			 // ============ Equivalence Partitions Tests ==============
-	    	
-	        //TC01 - ray intersects with polygon
-	        assertEquals("Ray Inside the polygon", 
-	        		polygon.findIntsersections((new Ray(new Point3D(2,-2,0.5),new Vector(0, 1, 0)))));
+	   
+	/**
+	 * Test method for {@link geometries.Triangle#findIntsersections(Ray ray)}.
+	 */
 
-	        //TC02- ray intersects with plane but outside the polygon against edge
-	        assertNull("Ray starts outside against edge",polygon.findIntsersections((new Ray(new Point3D(2, -2, -1),new Vector(0, 1, 0)))));
-
-	        //TC03- ray intersects with plane but outside the polygon against vertex
-	        assertNull("Ray starts outside against vertex", polygon.findIntsersections((new Ray(new Point3D(3.5, -2, -0.2),new Vector(0, 1, 0)))));
-
-	        // =============== Boundary Values Tests ==================
-
-	        //TC04- the ray begins before the plane on the edge of polygon
-	        assertNull("Ray's point is on the edge", polygon.findIntsersections((new Ray(new Point3D(3, -2, 0.5),new Vector(0, 1, 0)))));
-
-	        //TC05- the ray begins before the plane on vertex
-	        assertNull("Ray's point is in vertex", polygon.findIntsersections((new Ray(new Point3D(3, -2, 0),new Vector(0, 1, 0)))));
-
-	        //TC06- the ray begins before the plane on edge's continuation
-	        assertNull("Ray's point is On edge's continuation", polygon.findIntsersections((new Ray(new Point3D(3, -2, 2),new Vector(0, 1, 0)))));
-	    }
-
+	public void testFindIntsersections() {
+		Point3D point1 = new Point3D(1, 0, 0);
+		Point3D point2 = new Point3D(0, 1, 0);
+		Point3D point3 = new Point3D(-1, 0, 0);
+		Point3D point4 = new Point3D(0, -1, 0);
+		Point3D point5 = new Point3D(0, 0, -0.25);
+		Point3D point6 = new Point3D(1.25, 1.25, 1);
+		Point3D point7 = new Point3D(2, 0, 1);
+		Point3D point8 = new Point3D(0.5, 0.5, 1);
+		Point3D point9 = new Point3D(1, 0, 1);
+		Point3D point10 = new Point3D(4, -3, 0);
+		Vector vector1 = new Vector(1, 1, 1);
+		Vector vector2 = new Vector(0, 0, -1);
+		Polygon polygon = new Polygon(point1, point2, point3, point4);
+		// ============ Equivalence Partitions Tests ==============
+		// Ray inside polygon
+		Ray ray1 = new Ray(point5, vector1);
+		List<Point3D> point3DList1 = polygon.findIntersections(ray1);
+		assertEquals("The test failed, the function found more than one intersection point", 1, point3DList1.size(),
+				0.1);
+		assertTrue("The test failed, the function did not find what it was looking for",
+				point3DList1.get(0).equals(new Point3D(0.25, 0.25, 0)));
+		// ============ Equivalence Partitions Tests ==============
+		// Ray outside against edge
+		Ray ray2 = new Ray(point6, vector2);
+		List<Point3D> point3DList2 = polygon.findIntersections(ray2);
+		if (point3DList2 != null) {
+			fail("The test failed, the function found intersection point");
+		}
+		// ============ Equivalence Partitions Tests ==============
+		// Ray outside against vertex
+		Ray ray3 = new Ray(point7, vector2);
+		List<Point3D> point3DList3 = polygon.findIntersections(ray3);
+		if (point3DList3 != null) {
+			fail("The test failed, the function found intersection point");
+		}
+		// =============== Boundary Values Tests ==================
+		// the ray begins before the plane On edge
+		Ray ray4 = new Ray(point8, vector2);
+		List<Point3D> point3DList4 = polygon.findIntersections(ray4);
+		if (point3DList4 != null) {
+			fail("The test failed, the function found intersection point");
+		}
+		// =============== Boundary Values Tests ==================
+		// the ray begins before the plane In vertex
+		Ray ray5 = new Ray(point9, vector2);
+		List<Point3D> point3DList5 = polygon.findIntersections(ray5);
+		if (point3DList5 != null) {
+			fail("The test failed, the function found intersection point");
+		}
+		// =============== Boundary Values Tests ==================
+		// the ray begins before the plane On edge's continuation
+		Ray ray6 = new Ray(point10, vector2);
+		List<Point3D> point3DList6 = polygon.findIntersections(ray6);
+		if (point3DList6 != null) {
+			fail("The test failed, the function found intersection point");
+		}
 	}
+
+}
 
 

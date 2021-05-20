@@ -42,10 +42,7 @@ public class Render
     	{
     		throw new MissingResourceException("The imageWriter empty","ImageWriter","_imageWriter");
     	}
-    	if(_scene==null)
-    	{
-    		throw new MissingResourceException("The scene empty","Scene","_scene");
-    	}
+    
     	if(_camera==null)
     	{
     		throw new MissingResourceException("The camera empty","Camera","_camera");
@@ -67,8 +64,7 @@ public class Render
     		}
     	}
     }
-      
-
+  
    
     /**
      * print the grid of the image
@@ -93,11 +89,8 @@ public class Render
     	                }
     	            }
     	        }
-    
-    
-      
     }
-
+ 
 
     /**
      * write the image
@@ -111,4 +104,6 @@ public class Render
     	_imageWriter.writeToImage();
     }
 }
+
+
 

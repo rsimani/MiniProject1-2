@@ -6,7 +6,7 @@ import java.util.List;
 
 
 
-public class Polygon implements Geometry 
+public class Polygon extends Geometry 
 {
 	protected List<Point3D> vertices;
 	
@@ -65,17 +65,18 @@ public class Polygon implements Geometry
 	        return result.toString();
 	    }
 
-	    /* @return list of the intersection that cut with the polygon */
 	   
-	    public List<Point3D> findIntsersections(Ray ray) 
+	
+	    @Override
+	    public List<GeoPoint> findGeoIntsersections(Ray ray) 
 	    {
-	        List<Point3D> intersections = plane.findIntsersections(ray);
+	        List<GeoPoint> intersections = plane.findGeoIntsersections(ray);
 	        if (intersections == null) return null;
 
 	        Point3D p0 = ray.getOriginPoint();
 	        Vector v = ray.getDirection();
 
-	        Vector v1  =vertices.get(1).subtract(p0);
+	        Vector v1 = vertices.get(1).subtract(p0);
 	        Vector v2 = vertices.get(0).subtract(p0);
 	        double sign = v.dotProduct(v1.crossProduct(v2));
 	        if (isZero(sign))
@@ -88,10 +89,16 @@ public class Polygon implements Geometry
 	            v2 = vertices.get(i).subtract(p0);
 	            sign = alignZero(v.dotProduct(v1.crossProduct(v2)));
 	            if (isZero(sign)) return null;
-	            if (positive != (sign >0)) return null;
+	            if (positive != (sign > 0)) return null;
 	        }
 
+	        //the for loop going over all the geo point list and set their geometry field to be poygon
+	        for (GeoPoint g : intersections) {
+	            g._geometry = this;
+	        }
 	        return intersections;
 	    }
 	}
+
+	
 
