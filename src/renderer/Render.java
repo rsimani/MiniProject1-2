@@ -9,7 +9,6 @@ import scene.Scene;
 public class Render 
 {
 	private ImageWriter _imageWriter;
-    public Scene _scene;
 	private Camera _camera;
 	private RayTracerBase _rayTracer;
    /**
@@ -22,7 +21,7 @@ public class Render
 	}
 	public  Render setScene(Scene scene)
 	{
-		this._scene=scene;
+		
 		return this;
 	}
 	public  Render setCamera(Camera camera)

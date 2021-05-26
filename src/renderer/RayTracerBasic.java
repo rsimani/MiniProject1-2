@@ -29,9 +29,16 @@ public class RayTracerBasic extends RayTracerBase
 		GeoPoint closestPoint = ray.findClosestGeoPoint(intersections);
 		return calcColor(closestPoint, ray);
 		}
+	/**
+	 * Calculate the color of point
+	 * 
+	 * @param intersection
+	 * @param ray
+	 * @return return the color of the point by phong model
+	 */
 
-
-	private Color calcColor(GeoPoint intersection, Ray ray) {
+	private Color calcColor(GeoPoint intersection, Ray ray) 
+	{
 		return _scene._ambientLight.getIntensity()
 		.add(intersection._geometry.getEmissionColor())
 		// add calculated light contribution from all light sources)
@@ -61,6 +68,7 @@ public class RayTracerBasic extends RayTracerBase
 		}
 		return color;
 	}
+	
 
 	/**
 	 * Calculate Specular component of light reflection.
@@ -136,5 +144,6 @@ public class RayTracerBasic extends RayTracerBase
 		}
 		return true;
 	}
+	
 }
 
