@@ -81,16 +81,17 @@ public class Camera
      * @param Vto= vector of the camera axises
      * @param Vup= vector of the camera axises
      */
-	public Camera(Point3D p0 ,Vector vto ,Vector vup) 
-	{
-		if(vto.dotProduct(vup)!=0)
-			throw new IllegalArgumentException("The vectors are not orthogonals!");
-		this.p0=new Point3D(p0);
-		
-		this.vto=vto.normalized();
-		this.vup=vup.normalized();
-		vright=(this.vto.crossProduct(this.vup)).normalized();
+	
+	public Camera(Point3D p0, Vector vTo, Vector vUp) throws IllegalArgumentException {
+		super();
+		if (!isZero(vUp.dotProduct(vTo))) // if vTo doesn't orthogonal to vUp
+			throw new IllegalArgumentException("vUp doesnt ortogonal to vTo");
+		this.vup = vUp.normalized();
+		this.vto = vTo.normalized();
+		this.vright = (vTo.crossProduct(vUp)).normalize();
+		this.p0 = p0;
 	}
+
 	/**
      * set the value of width and height
      * @return camera value
@@ -124,24 +125,29 @@ public class Camera
      */
 	public Ray constructRayThroughPixel (int nX, int nY, int j, int i)
 	{
-		//Pc= P0+ d∙Vto
-        Point3D pc = p0.add(vto.scale(distance));
-        double ry = height / (double)nY;
-        double rx = width / (double)nX;
-        double xj = ((j - nX / 2d) * rx) + (rx / 2d);
-        double yi = ((i - nY / 2d) * ry) + (ry / 2d);
-        Point3D pij = pc;
-        if (!isZero(xj)) 
-        {
-            pij = pij.add(vright.scale(xj));
-        }
-        if (!isZero(yi)) {
-            pij = pij.add(vup.scale(-yi));
-        }
-        Vector vij = pij.subtract(p0);
-        Ray ray = new Ray(new Point3D(p0),new Vector(vij));
-        return ray;
-        }
+
+
+		Point3D Pc = p0.add(vto.scale(distance));
+
+		double Ry = height / nY;
+		double Rx = width / nX;
+		double yi = (i - (nY - 1) / 2d) * Ry;
+		double xj = (j - (nX - 1) / 2d) * Rx;
+
+		Point3D Pij = Pc;
+
+		if (!isZero(xj)) {
+			Pij = Pij.add(vright.scale(xj));
+		}
+		if (!isZero(yi)) {
+			Pij = Pij.add(vup.scale(-yi));
+		}
+
+		Vector Vij = Pij.subtract(p0);
+
+		return new Ray(p0, Vij);
+
+	}
 }
 
 	

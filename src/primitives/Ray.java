@@ -1,19 +1,38 @@
 package primitives;
 import static primitives.Util.isZero;
+import static primitives.Util.alignZero;
 import geometries.Intersectable.GeoPoint;
 import java.util.List;
 public class Ray 
 {
-	private final Point3D p0;
-   
-    private final Vector dir;
+   Point3D p0;
+   Vector dir;
 	
 
+	/**
+	 * A constant for the size of moving first rays for shading rays
+	 * */
+	private static final double DELTA = 0.1;
+	
 public Ray(Point3D point, Vector direction)
 {
-	p0 = new Point3D(point);
-	dir = direction.normalized();
+
+	this.p0=point;
+	this.dir=direction;
+	dir.normalize();
 }
+public Ray(Point3D head, Vector lightDirection, Vector n) 
+{
+	if(alignZero(lightDirection.dotProduct(n)) < 0)
+		 p0= head.add(n.scale(-DELTA));
+	else if(alignZero(lightDirection.dotProduct(n)) > 0)
+		 p0= head.add(n.scale(DELTA));
+	else if(isZero(lightDirection.dotProduct(n)))
+		 p0=head;
+	dir=lightDirection;
+	dir.normalize();		
+}
+
 public Ray(Ray other)
 {
     this.p0 = new Point3D(other.p0);
@@ -28,24 +47,13 @@ public Point3D getOriginPoint()
 public Vector getDirection()
 {
 //  return new Vector(_direction);
-  return dir;
+  return dir.normalize();
 }
-public boolean equals(Object obj)
-{
-	if (this == obj) return true;
-	if (obj == null) return false;
-	if (!(obj instanceof Ray)) return false;
-	Ray other = (Ray)obj;
-	return p0.equals(other.p0)&&dir.equals(other.dir);
 
-}
-public String toString() 
+
+public Point3D getPoint(double t) throws IllegalArgumentException
 {
-    return "point: " + p0 + ", direction: " + dir;
-}
-public Point3D getPoint(double length) 
-{
-     return isZero(length ) ?p0 : p0.add(dir.scale(length));
+	return p0.add(dir.scale(t));
 }
 /*this function get list of points and return the most*/
 public Point3D findClosestPoint(List<Point3D> points) 
@@ -91,6 +99,36 @@ public GeoPoint findClosestGeoPoint(List<GeoPoint> points)
 		return null;
 }
 
+public GeoPoint getClosestGeoPoint(List<GeoPoint> intersections)
+{
+	
+	if(intersections == null)
+		return null;
+	GeoPoint closet = intersections.get(0);
+	for (GeoPoint geoPoint : intersections) 
+	{
+		if(geoPoint._point.distance(p0) < closet._point.distance(p0))
+			closet= geoPoint;
+		
+	}
+	return closet;
+}
+
+/***********************************************************/
+
+public boolean equals(Object obj)
+{
+	if (this == obj) return true;
+	if (obj == null) return false;
+	if (!(obj instanceof Ray)) return false;
+	Ray other = (Ray)obj;
+	return p0.equals(other.p0)&&dir.equals(other.dir);
+
+}
+public String toString() 
+{
+    return "point: " + p0 + ", direction: " + dir;
+}
 
 
 

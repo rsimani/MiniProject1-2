@@ -47,8 +47,11 @@ public class ShadowTests {
 	 * Produce a picture of a two triangles lighted by a spot light with a Sphere
 	 * producing a shading
 	 */
+
 	@Test
-	public void trianglesSphere() {
+	public void trianglesSphere() 
+	
+	{
 		scene.set_ambientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
 
 		scene._geometries.add( //
@@ -73,8 +76,10 @@ public class ShadowTests {
 	}
 
 
+
+
 	@Test
-	public void sphereTriangleInitial01() {
+	public void sphereTriangleInitial02() {
 		scene._geometries.add( //
 				new Sphere(60, new Point3D(0, 0, -200)) //
 						.setEmissionColor(new Color(java.awt.Color.BLUE)) //
@@ -98,7 +103,7 @@ public class ShadowTests {
 	}
 
 	@Test
-	public void sphereTriangleInitial02() {
+	public void sphereTriangleInitial03() {
 		scene._geometries.add( //
 				new Sphere(60, new Point3D(0, 0, -200)) //
 						.setEmissionColor(new Color(java.awt.Color.BLUE)) //
@@ -120,7 +125,7 @@ public class ShadowTests {
 	}
 	
 	@Test
-	public void sphereTriangleInitial03() {
+	public void sphereTriangleInitial04() {
 		scene._geometries.add( //
 				new Sphere(60, new Point3D(0, 0, -200)) //
 						.setEmissionColor(new Color(java.awt.Color.BLUE)) //
@@ -143,7 +148,7 @@ public class ShadowTests {
 	}
 
 	@Test
-	public void sphereTriangleInitial04() {
+	public void sphereTriangleInitial05() {
 		scene._geometries.add( //
 				new Sphere(60, new Point3D(0, 0, -200)) //
 						.setEmissionColor(new Color(java.awt.Color.BLUE)) //

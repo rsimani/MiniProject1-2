@@ -51,18 +51,20 @@ public class Render
     		throw new MissingResourceException("The rayTracer empty","RayTracerBase","_rayTracer");
     	}
     	
-        int nX = _imageWriter.getNx();
-        int nY = _imageWriter.getNy();
-    	for (int i = 0; i < nY; i++)
-    	{
-    		for (int j = 0; j < nX; j++)
-    		{
-    			Ray ray = _camera.constructRayThroughPixel(nX, nY, j, i);
-    			Color rayColor=_rayTracer.traceRay(ray);
-    			_imageWriter.writePixel(i, j, rayColor);
-    		}
-    	}
-    }
+    	
+		for (int i = 0; i < _imageWriter.getNx(); i++)
+		{
+			for (int j = 0; j < _imageWriter.getNy(); j++)	
+			{
+				Ray ray = _camera.constructRayThroughPixel(_imageWriter.getNx(), _imageWriter.getNy(), j, i);
+				Color rayColor = _rayTracer.traceRay(ray);
+				_imageWriter.writePixel(j, i, rayColor); 
+			}
+		}
+		
+	
+
+	}
   
    
     /**
@@ -72,23 +74,22 @@ public class Render
      */
     public void printGrid(int interval, Color color) 
     {
-    	if(_imageWriter==null)
     	{
-    		throw new MissingResourceException("The imageWriter empty","ImageWriter","_imageWriter");
+    		if (_imageWriter == null)
+    			throw new MissingResourceException("this function must have values in all the fileds", "ImageWriter", "imageWriter");
+    		
+
+    		for (int i = 0; i < _imageWriter.getNx(); i++)
+    		{
+    			for (int j = 0; j < _imageWriter.getNy(); j++)	
+    			{
+    				if(i % interval == 0 || j % interval == 0)
+    					_imageWriter.writePixel(i, j, color); 
+    			}
+    		}
     	}
-    		  int Nx = _imageWriter.getNx();
-    	        int Ny = _imageWriter.getNy();
-    	        for (int i = 0; i < Ny; i++) 
-    	        {
-    	            for (int j = 0; j < Nx; j++)
-    	            {
-    	                if (i % interval == 0 || j % interval == 0)
-    	                {
-    	                	_imageWriter.writePixel(j, i, color);
-    	                }
-    	            }
-    	        }
-    }
+
+    	}
  
 
     /**

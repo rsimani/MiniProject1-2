@@ -1,4 +1,5 @@
 package primitives;
+
 /**
  *  Material
  * 
@@ -9,6 +10,16 @@ public class Material
 {
 public double kD=0;
 public double kS=0;
+/** 
+ * Promotes transparency 
+ * @param kT
+ */
+public double kT=0;
+/** 
+ * Coefficient of reflection 
+ * @param kR
+ */
+public double kR=0;
 public int nShininess=0;
 /**
  * setter of kD
@@ -34,9 +45,9 @@ public Material setkS(double kS)
 	return this;
 }
 /**
- * setter of kD
+ * setter of nShininess
  * 
- * @param kD
+ * @param nShininess
  * @return material
  */
 public Material setnShininess(int nShininess)
@@ -44,6 +55,30 @@ public Material setnShininess(int nShininess)
 	this.nShininess=nShininess;
 	return this;
 }
+/**
+ * setter of kT
+ * 
+ * @param kT
+ * @return material
+ */
+public Material setkT(double kT)
+{
+	this.kT=kT;
+	return this;
+}
+/**
+ * setter of kR
+ * 
+ * @param kR
+ * @return material
+ */
+public Material setkR(double kR)
+{
+	this.kR=kR;
+	return this;
+}
+
+
 }
 
 
