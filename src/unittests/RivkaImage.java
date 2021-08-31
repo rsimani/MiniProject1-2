@@ -720,7 +720,7 @@ public class RivkaImage {
 ,
 */
 
-                /////////           CEILING                 ///////////
+                /////////           CEILING                 //////////
                 new Polygon(
                         new Point3D(70,-40,50),
                         new Point3D(-70,-40,50),
