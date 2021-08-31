@@ -14,12 +14,12 @@ public double kS=0;
  * Promotes transparency 
  * @param kT
  */
-public double kT=0;
+public double kT=0.0;
 /** 
  * Coefficient of reflection 
  * @param kR
  */
-public double kR=0;
+public double kR=0.0;
 public int nShininess=0;
 /**
  * setter of kD
@@ -77,8 +77,23 @@ public Material setkR(double kR)
 	this.kR=kR;
 	return this;
 }
+/**
+ * getter for kR
+ *
+ * @return kR
+ */
+public double getKr() {
+    return kR;
+}
 
-
+/**
+ * getter for kT
+ *
+ * @return kT
+ */
+public double getKt() {
+    return kT;
+}
 }
 
 

@@ -27,10 +27,10 @@ public class RenderTests {
 	@Test
 	public void basicRenderTwoColorTest() {
 		Scene scene = new Scene("Test scene")//
-				.set_ambientLight(new AmbientLight(new Color(255, 191, 191), 1)) //
-				.set_background(new Color(75, 127, 90));
+				.setAmbientLight(new AmbientLight(new Color(255, 191, 191), 1)) //
+				.setBackground(new Color(75, 127, 90));
 
-		scene._geometries.add(new Sphere(50, new Point3D(0, 0, -100)),
+		scene.geometries.add(new Sphere(new Point3D(0, 0, -100), 50.0),
 				new Triangle(new Point3D(-100, 0, -100), new Point3D(0, 100, -100), new Point3D(-100, 100, -100)), // up
 																													// left
 				new Triangle(new Point3D(100, 0, -100), new Point3D(0, 100, -100), new Point3D(100, 100, -100)), // up
@@ -60,23 +60,23 @@ public class RenderTests {
 	@Test
 	public void basicRenderMultiColorTest() {
 		Scene scene = new Scene("Test scene")//
-				.set_ambientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.2)); //
+				.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.2)); //
 
-		scene._geometries.add(new Sphere(50, new Point3D(0, 0, -100)) //
-				.setEmissionColor(new Color(java.awt.Color.CYAN)), //
+		scene.geometries.add(new Sphere(new Point3D(0, 0, -100), 50) //
+				.setEmission(new Color(java.awt.Color.CYAN)), //
 				 // up
 				new Triangle(new Point3D(100, 0, -100), new Point3D(0, -100, -100), new Point3D(100, -100, -100))																		// left
-						.setEmissionColor(new Color(java.awt.Color.GREEN)),
+						.setEmission(new Color(java.awt.Color.GREEN)),
 						new Triangle(new Point3D(100, 0, -100), new Point3D(0, 100, -100), new Point3D(100, 100, -100))	,
 						
 				 // up
 																													// right
 				 // down
 						new Triangle(new Point3D(-100, 0, -100), new Point3D(0, -100, -100), new Point3D(-100, -100, -100))																						// left
-						.setEmissionColor(new Color(java.awt.Color.RED)),
+						.setEmission(new Color(java.awt.Color.RED)),
 				 // down
 				new Triangle(new Point3D(-100, 0, -100), new Point3D(0, 100, -100), new Point3D(-100, 100, -100))		// right
-						.setEmissionColor(new Color(java.awt.Color.BLUE)));
+						.setEmission(new Color(java.awt.Color.BLUE)));
 
 		ImageWriter imageWriter = new ImageWriter("color render test", 1000, 1000);
 		Render render = new Render() //

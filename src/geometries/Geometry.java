@@ -1,12 +1,15 @@
 package geometries;
-
-import primitives.Point3D;
 import primitives.*;
-
+/**
+ *  class Geometry
+ * 
+ * @author Rivka Simani-Bohbot
+ *
+ */
 public abstract class Geometry implements Intersectable
 {
-	public Material material=new Material();
-	 protected  primitives.Color _emissionColor=primitives.Color.BLACK;
+	private Material material=new Material();
+	 protected Color emission =Color.BLACK;
 	public abstract Vector getNormal(Point3D p);
    
     /*--------------------------------------------------getters and setters------------------------------------------------------*/
@@ -16,9 +19,9 @@ public abstract class Geometry implements Intersectable
      */
 
 
-    public primitives.Color getEmissionColor()
+    public primitives.Color getEmission()
     {
-        return _emissionColor;
+        return emission ;
     }
 
     
@@ -26,9 +29,9 @@ public abstract class Geometry implements Intersectable
 	   setter to EmissionColor
      * @return Geometry instance
      */
-    public Geometry setEmissionColor( primitives.Color color) 
+    public Geometry setEmission(Color emission ) 
     {
-        this._emissionColor=color;
+        this.emission =emission ;
         return this;
     }
     /**
@@ -52,4 +55,3 @@ public abstract class Geometry implements Intersectable
     }
  
 }
-

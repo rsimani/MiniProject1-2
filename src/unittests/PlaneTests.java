@@ -27,7 +27,7 @@ public class PlaneTests
 
 		// Test if the normal of the plane is normalized
 
-		assertEquals("Test fails, the normal of the plane is not normalized", 1, plane.get_normal().length(), 0.0000001);
+		assertEquals("Test fails, the normal of the plane is not normalized", 1, plane.getThisNormal().length(), 0.0000001);
 	}
 
 	/**

@@ -13,6 +13,7 @@ public class PointLight extends Light implements LightSource
 	private double kC=1;
 	private double kL=0;
     private double kQ=0;
+    protected double _radius = 0d;
 	/**
 	 * Constructor
 	 * 
@@ -86,6 +87,22 @@ public class PointLight extends Light implements LightSource
 	{
 		return this.position.distance(point);
 	}
+	/**
+	 * constructor to the point light source
+	 * @param color _intensity value, _position value,_kC value , _kL value, _kQ value
+	 */
+		public PointLight(Color color,Point3D p,double kc,double kl,double kq) {
+			super(color);
+			position=p;
+			kC=kc;
+			kL=kl;
+			kQ=kq;
+			}
+		
+		public PointLight(Color color, Point3D p, double kc, double kl, double kq, double radius) {
+	        this(color, p, kc, kl, kq);
+	        this._radius = radius;
+	    }
 	
 
 }

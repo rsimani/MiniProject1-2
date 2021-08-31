@@ -1,5 +1,5 @@
 package primitives;
-
+import static primitives.Util.alignZero;;
 public class Point3D
 {
 	  public final static Point3D ZERO = new Point3D(0.0, 0.0, 0.0);
@@ -36,6 +36,33 @@ public class Point3D
 	        return z;
 	    }
 
+	    /**
+	     * x getter as the value of a double
+	     *
+	     * @return x
+	     */
+	    public double getXDouble() {
+	        return alignZero(x.coord);
+	    }
+
+	    /**
+	     * y getter as the value of a double
+	     *
+	     * @return y
+	     */
+	    public double getYDouble() {
+	        return alignZero(y.coord);
+	    }
+
+	    /**
+	     * z getter as the value of a double
+	     *
+	     * @return z
+	     */
+	    public double getZDouble() {
+	        return alignZero(z.coord);
+	    }
+
 	    public Vector subtract(Point3D otherPoint3D) 
 	    {
 	        return new Vector(
@@ -48,9 +75,22 @@ public class Point3D
     public Point3D add(Vector vector)
     {
         return new Point3D(
-                this.x.coord + vector.head.x.coord,
-                this.y.coord + vector.head.y.coord,
-                this.z.coord + vector.head.z.coord);
+                this.x.coord + vector.getHead().x.coord,
+                this.y.coord + vector.getHead().y.coord,
+                this.z.coord + vector.getHead().z.coord);
+    }
+    /**
+     * produce a new Point3D with the other Point3D values added
+     * to current point values
+     *
+     * @param point3D other point
+     * @return new Point3D with added values
+     */
+    public Point3D add(Point3D point3D) {
+        return new Point3D(
+                this.x.coord + point3D.x.coord,
+                this.y.coord + point3D.y.coord,
+                this.z.coord + point3D.z.coord);
     }
 
     public double distanceSquared(Point3D otherPoint3D)

@@ -24,31 +24,31 @@ public class CameraIntegrationTest
 			// TC01: Sphere and camera ray with 2 interaction point
 			Camera camera = new Camera(new Point3D(0, 0, 0), new Vector(0, 0, -1), new Vector(0, 1, 0)).setDistance(1)
 					.setViewPlaneSize(3, 3);
-			Sphere sphere = new Sphere(1, new Point3D(0, 0, -3));
+			Sphere sphere = new Sphere(new Point3D(0, 0, -3), 1);
 			assertEquals("The count of untegrations is not correct", 2, findInteractionPoints(camera, sphere).size());
 
 			// TC02: Sphere and camera ray with 18 interaction point
 			camera = new Camera(new Point3D(0, 0, 0.5), new Vector(0, 0, -1), new Vector(0, 1, 0)).setDistance(1)
 					.setViewPlaneSize(3, 3);
-			sphere = new Sphere(2.5, new Point3D(0, 0, -2.5));
+			sphere = new Sphere(new Point3D(0, 0, -2.5), 2.5);
 			assertEquals("The count of untegrations is not correct", 18, findInteractionPoints(camera, sphere).size());
 
 			// TC03: Sphere and camera ray with 10 interaction point
 			camera = new Camera(new Point3D(0, 0, 0.5), new Vector(0, 0, -1), new Vector(0, 1, 0)).setDistance(1)
 					.setViewPlaneSize(3, 3);
-			sphere = new Sphere(2, new Point3D(0, 0, -2));
+			sphere = new Sphere(new Point3D(0, 0, -2), 2);
 			assertEquals("The count of untegrations is not correct", 10, findInteractionPoints(camera, sphere).size());
 
 			// TC04: Sphere and camera ray with 9 interaction point
 			camera = new Camera(new Point3D(0, 0, 0.5), new Vector(0, 0, -1), new Vector(0, 1, 0)).setDistance(1)
 					.setViewPlaneSize(3, 3);
-			sphere = new Sphere(4, new Point3D(0, 0, -2));
+			sphere = new Sphere(new Point3D(0, 0, -2), 4);
 			assertEquals("The count of untegrations is not correct", 9, findInteractionPoints(camera, sphere).size());
 
 			// TC05: Sphere and camera ray with 0 interaction point
 			camera = new Camera(new Point3D(0, 0, 0.5), new Vector(0, 0, -1), new Vector(0, 1, 0)).setDistance(1)
 					.setViewPlaneSize(3, 3);
-			sphere = new Sphere(0.5, new Point3D(0, 0, 1));
+			sphere = new Sphere(new Point3D(0, 0, 1), 0.5);
 			assertEquals("The count of untegrations is not correct", null, findInteractionPoints(camera, sphere));
 
 			// ============ Plane & Camera Integration Tests ==============

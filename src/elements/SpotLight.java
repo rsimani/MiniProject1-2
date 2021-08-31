@@ -24,6 +24,16 @@ public SpotLight(Color intensity, Point3D position, Vector direction)
 	super(intensity, position);
 	this.direction = direction;
 }
+public SpotLight(Color colorIntensity, Point3D position, Vector direction, double kC, double kL, double kQ) 
+{
+    super(colorIntensity, position, kC, kL, kQ);
+    this.direction = direction.normalized();
+  
+}
+
+
+
+
 }
 
 

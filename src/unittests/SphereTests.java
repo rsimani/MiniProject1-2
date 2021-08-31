@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.util.List;
 
 /**
- * @author Rivka&Ora
+ * @author Rivka
  *
  */
 public class SphereTests 
@@ -22,7 +22,7 @@ public class SphereTests
 		// ============ Equivalence Partitions Tests ==============
 		Point3D point1 = new Point3D(1, 2, 3);
 		Point3D point2 = new Point3D(3, 2, 3);
-		Sphere sphere = new Sphere(2, point1);
+		Sphere sphere = new Sphere(point1, 2);
 		// Test if the normal of the Sphere is normalized
 		assertEquals("Test fails, the normal of the Sphere is not normalized", 1, sphere.getNormal(point2).length(),
 				0.000001);
@@ -34,7 +34,7 @@ public class SphereTests
 	@Test
 	public void testFindIntsersections() {
 		Point3D center1 = new Point3D(1, 0, 0);
-		Sphere sphere = new Sphere(1, center1);
+		Sphere sphere = new Sphere(center1, 1);
 		Point3D point1 = new Point3D(-1, 0, 0);
 		Vector vector1 = new Vector(1, 0, 0);
 		Point3D point2 = new Point3D(1.5, 0, 0);

@@ -1,77 +1,155 @@
 package geometries;
 import primitives.*;
-import primitives.Vector;
 import java.util.List;
-import static primitives.Util.alignZero;
-import static primitives.Util.isZero;
+import static primitives.Util.*;
+/**
+ *  class Plane
+ * 
+ * @author Rivka Simani-Bohbot
+ *
+ */
 
-public class Plane extends Geometry 
-{
+/**
+ * class that represents a plane in 3d
+ */
+public class Plane extends Geometry {
 
-    Point3D _p; 
-    Vector _normal;
-    public Vector getNormal(Point3D p)
-    {
-        return _normal;
-    }
-    public Point3D get_p()
-    {
-        return _p;
-    }
-    public Vector get_normal()
-    {
-        return _normal;
-    }
-    public Plane(Point3D p1, Point3D p2, Point3D p3)
-    {
-        super();
-        _p =p1;
-        Vector U = new Vector(p1, p2);
-        Vector V = new Vector(p1, p3);
+    /**
+     * a point for the axis
+     */
+    private  Point3D q0;
 
-        Vector N = U.crossProduct(V);
+    /**
+     * a vector to know the normal of the plane
+     */
+    private Vector normal;
 
-        _normal=N.normalize();
-      
+    /**
+     * ctor for plane that excepts 3 points
+     *
+     * @param x first point
+     * @param y second point
+     * @param z third point
+     *
+     * @throws IllegalArgumentException in 2 cases:
+     *      1 - All three points are on the same line.
+     *      2 - not all points are different
+     */
+    public Plane(Point3D x,Point3D y,Point3D z) {
+        q0 = x;
+        if (x != y && x != z && y != z) {
+            Vector a = x.subtract(y);
+            Vector b = y.subtract(z);
+            if (a.normalized() != b.normalized())
+                normal = a.crossProduct(b);
+            else
+                throw new IllegalArgumentException("All three points are on the same line");
+            normal.normalize();
+        }
+        else
+            throw new IllegalArgumentException("All points must be different");
     }
- 
-    public Plane(Point3D point, Vector _normal) 
-    {
-        super();
-        _p = point;
-        this._normal = new Vector(_normal);
-    }
-    public String toString()
-    {
-        return "Point3D = " + _p +
-                " , Normal = " + _normal ;
-                
-    }
-    
 
-@Override
-public List<GeoPoint> findGeoIntsersections(Ray ray)
-{
-	
-	Vector p0Q;
-    try {
-        p0Q = _p.subtract(ray.getOriginPoint());
-    } catch (IllegalArgumentException e) {
-        return null; // ray starts from point Q - no intersections
+    /**
+     * Ctor for plane that excepts a point and a vector
+     *
+     * @param q0 first point
+     * @param normal normal of the plane
+     */
+    public Plane(Point3D q0, Vector normal) {
+        this.q0 = q0;
+        this.normal = normal.normalized();
     }
-    // t =
-    //N * (Q0 - P0) / (n * v)
-    double nv = _normal.dotProduct(ray.getDirection());
-    // if ray is parallel to the plane - no intersections
-    if (isZero(nv))
+
+    /**
+     * getter for point
+     *
+     * @return init point of plane
+     */
+    public Point3D getQ0() {
+        return q0;
+    }
+
+    /**
+     * getter for the normal
+     *
+     * @return normal of the point
+     */
+    public Vector getThisNormal() {
+        return normal;
+    }
+
+    /**
+     * getter for normal
+     *
+     * @param point3D init point
+     *
+     * @return normal of the point
+     */
+    @Override
+    public Vector getNormal(Point3D point3D) {
+        return getThisNormal();
+    }
+
+    /**
+     * A method that receives a ray and checks the points of GeoIntersection of the ray with the plane
+     *
+     * @param ray the ray received
+     *
+     * @return null / list that includes all the GeoIntersection points (contains the geometry (shape) and the point in 3D)
+     */
+    @Override
+    public List<GeoPoint> findGeoIntersections(Ray ray,double maxDistance) {
+        // the ray's components
+        Point3D p0 = ray.getOriginPoint();
+        Vector v = ray.getDirection();
+
+        // the ray is intersecting with starting point p0 which is not called intersecting!
+        if (q0.equals(p0)) {
+            return null;
+        }
+
+        // P is the point which the vector intersects with the plane
+        // Ray points: P = P0 + t*v
+        // Plane points: normal*(q0-p) = 0
+        // ...
+        // t = normal*(Q - p0)/n*v
+        double nv = alignZero(normal.dotProduct(v));
+
+        // the ray is parallel to the plane doesn't matter if contained or not
+        if(isZero(nv)) {
+            return null;
+        }
+
+        // t = normal*(Q - p0)/n*v
+        double t = alignZero(normal.dotProduct(q0.subtract(p0)));
+
+        // check if exiting point is on plane
+        if(isZero(t)) {
+            return null;
+        }
+
+        // we checked already that nv isn't zero! so we can divide it
+        t = alignZero(t / nv);
+
+        // if t is negative there are no intersections
+        if (alignZero(t) <= 0) {
+            return null;
+        }
+        if(alignZero(t - maxDistance)<=0)
+        {
+            Point3D p = ray.getPoint(t);
+            return List.of(new GeoPoint(this,p));
+        }        //P = P0 + t*v
         return null;
+    }
 
-    double t = alignZero(_normal.dotProduct(p0Q) / nv);
-    return t <= 0 ? null : List.of(new GeoPoint(this,ray.getPoint(t)));
+    @Override
+    public String toString() {
+        return "Plane{" +
+                "q0=" + q0 +
+                ", normal=" + normal +
+                '}';
+    }
 }
-
-
-}
-
-
 

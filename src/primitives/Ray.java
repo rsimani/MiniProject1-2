@@ -36,7 +36,7 @@ public Ray(Point3D head, Vector lightDirection, Vector n)
 public Ray(Ray other)
 {
     this.p0 = new Point3D(other.p0);
-    this.dir = new Vector(other.dir);
+    this.dir = other.dir;
 
 }
 public Point3D getOriginPoint() 
@@ -83,11 +83,11 @@ public GeoPoint findClosestGeoPoint(List<GeoPoint> points)
 	if (!points.isEmpty())
 	{
 		GeoPoint closest = points.get(0);
-		double d = this.p0.distance(points.get(0)._point);
+		double d = this.p0.distance(points.get(0).point3D);
 		double temp;
 		for (int i = 1; i < points.size(); i++) 
 		{
-			temp = this.p0.distance(points.get(i)._point);
+			temp = this.p0.distance(points.get(i).point3D);
 			if (temp < d)
 			{
 				d = temp;
@@ -107,7 +107,7 @@ public GeoPoint getClosestGeoPoint(List<GeoPoint> intersections)
 	GeoPoint closet = intersections.get(0);
 	for (GeoPoint geoPoint : intersections) 
 	{
-		if(geoPoint._point.distance(p0) < closet._point.distance(p0))
+		if(geoPoint.point3D.distance(p0) < closet.point3D.distance(p0))
 			closet= geoPoint;
 		
 	}

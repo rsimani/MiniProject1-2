@@ -1,8 +1,14 @@
 package geometries;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import primitives.*;
+/**
+ *  class Geometries
+ * 
+ * @author Rivka Simani-Bohbot
+ *
+ */
 public class Geometries implements Intersectable
+
 {
 	 private  List<Intersectable> _geometries =new ArrayList<>() ;
 	 /*constractor with empty list by ArrayList*/
@@ -26,23 +32,27 @@ public class Geometries implements Intersectable
 	    }
 
 
-    @Override
-    public List<GeoPoint> findGeoIntsersections(Ray ray)
-    {
-        List<GeoPoint> intersections = new ArrayList<GeoPoint>();
-
-        for (Intersectable geometry : _geometries) {
-            List<GeoPoint> result = geometry.findGeoIntsersections(ray);
-            if (result != null) 
-            {
-                intersections.addAll(result);
-            }
-        }
-        if (intersections.size()> 0)
-            return intersections;
-        return null;
-    }
-
+/*
+* A method that receives a Ray and checks the Ray's GeoIntersection points with all the bodies of the class
+*
+* @param ray the ray received
+*
+* @return  null / list that includes all the GeoIntersection points (contains the geometry (shape) and the point in 3D)
+*/
+@Override
+public List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance) {
+   List<GeoPoint> result = null;
+   for (Intersectable item : this._geometries) {
+       List<GeoPoint> itemPoints = item.findGeoIntersections(ray,maxDistance);
+       if (itemPoints != null) {
+           if (result == null) {
+               result = new LinkedList<>();
+           }
+           result.addAll(itemPoints);
+       }
+   }
+   return result;
+}
 }
 
 

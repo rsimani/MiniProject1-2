@@ -26,7 +26,7 @@ public class ImageWriter
 
 	private BufferedImage image;
 	private String imageName;
-	
+	private double imageWidth, imageHeight;
 	private Logger logger = Logger.getLogger("ImageWriter");
 
 	// ***************** Constructors ********************** //
@@ -42,6 +42,23 @@ public class ImageWriter
 		this.nX = nX;
 		this.nY = nY;
 		image = new BufferedImage(nX, nY, BufferedImage.TYPE_INT_RGB);
+	}
+	/**
+	 * Image Writer constructor accepting image name and View Plane parameters,
+	 * @param imageName the name of jpeg file
+	 * @param width View Plane width in size units
+	 * @param height View Plane height in size units
+	 * @param nX amount of pixels by Width 
+	 * @param nY amount of pixels by height
+	 */
+	public ImageWriter(String _imageName, double _width, double _height, int _nX, int _nY) {
+		imageName = _imageName;
+		imageWidth = _width;
+		imageHeight = _height;
+		nX = _nX;
+		nY = _nY;
+
+		image = new BufferedImage(_nX, _nY, BufferedImage.TYPE_INT_RGB);
 	}
 
 	// ***************** Getters/Setters ********************** //
@@ -98,7 +115,13 @@ public class ImageWriter
 	{
 		image.setRGB(xIndex, yIndex, color.getColor().getRGB());
 	}
-
+	 /**
+     * getter
+     * @return image
+     */
+    public BufferedImage getImage() {
+        return image;
+    }
 
 }
 
