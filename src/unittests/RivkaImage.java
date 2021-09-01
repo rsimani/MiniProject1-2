@@ -122,7 +122,7 @@ public class RivkaImage {
         Color brown = new Color(23,13,2);
     */
         Geometries geometries = new Geometries();
-  //  geometries.add(
+  geometries.add(
 
         		//****************************window*****************************//
 
@@ -158,7 +158,7 @@ public class RivkaImage {
         		                        2,
         		                        new Point3D(-250, 170, -50),
         		                        new Point3D(-250, 170, -180)
-        		        ));
+        		        ),
 
         		//************************window shutter*****************************/
 
@@ -185,246 +185,7 @@ public class RivkaImage {
         		                            new Point3D(-250, 162 - 8 * i, -50)
         		            );
         		        }
-                //################        TABLE            #####################
-
-               //  .setMaterial(new Material().setKd(0.5).setKs(0.5).setNShininess(100)));
-/*
-              firstLeg.get(0)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-                firstLeg.get(1)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-                firstLeg.get(2)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-
-                firstLeg.get(3)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-                firstLeg.get(4)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-                firstLeg.get(5)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-
-                secondLeg.get(0)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-                secondLeg.get(1)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-                secondLeg.get(2)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-                secondLeg.get(3)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-                secondLeg.get(4)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-                secondLeg.get(5)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-
-                thirdLeg.get(0)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-                thirdLeg.get(1)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-                thirdLeg.get(2)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-                thirdLeg.get(3)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-                thirdLeg.get(4)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-                thirdLeg.get(5)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-
-                fourthLeg.get(0)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-                fourthLeg.get(1)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-                fourthLeg.get(2)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-                fourthLeg.get(3)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-                fourthLeg.get(4)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-                fourthLeg.get(5)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.4).setkS(0.3).setnShininess(100).setkT(0.3)),
-
-                board.get(0)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(30)),
-                board.get(1)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(30)),
-                board.get(2)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(30)),
-                board.get(3)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(30)),
-                board.get(4)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(30)),
-                board.get(5)
-                        .setEmissionColor(brown)
-                        .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(30)),
-
-                cover1.get(0)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                cover1.get(1)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                cover1.get(2)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                cover1.get(3)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                cover1.get(4)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                cover1.get(5)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-
-                cover2.get(0)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                cover2.get(1)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                cover2.get(2)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                cover2.get(3)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                cover2.get(4)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                cover2.get(5)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-
-                cover3.get(0)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                cover3.get(1)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                cover3.get(2)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                cover3.get(3)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                cover3.get(4)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                cover3.get(5)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-*/
-       /*         lamp.get(0)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                lamp.get(1)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                lamp.get(2)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                lamp.get(3)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                lamp.get(4)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                lamp.get(5)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-
-                lamp2.get(0)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                lamp2.get(1)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                lamp2.get(2)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                lamp2.get(3)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                lamp2.get(4)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                lamp2.get(5)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                        lamp2.get(0)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                lamp3.get(1)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                lamp3.get(2)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                lamp3.get(3)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                lamp3.get(4)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                lamp3.get(5)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                        lamp2.get(0)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                lamp4.get(1)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                lamp4.get(2)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                lamp4.get(3)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                lamp4.get(4)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),
-                lamp4.get(5)
-                        .setEmissionColor(new Color(220,150,0))
-                        .setMaterial(new Material().setkD(1).setkS(0).setnShininess(50)),*/
-        		
-               ////         new Cylinder(new Color(java.awt.Color.WHITE),new Material().setkT(0.6).setkD(0.1).setkS(0.1).setnShininess(100),4,(new Point3D(39.5,60,27)),new Point3D(39.5,60,13)),
-         //       new Sphere(new Point3D(39.5,60,20),7)
-                    //    .setEmissionColor(new Color(0,190,190))
-                     //   .setMaterial(new Material().setkT(0.6).setkD(0.1).setkS(0.1).setnShininess(100)),
-                     //   new Cylinder(new Color(java.awt.Color.WHITE),new Material().setkT(0.6).setkD(0.1).setkS(0.1).setnShininess(100),4,(new Point3D(-39.5,60,27)),new Point3D(-39.5,60,13)),
-               // new Sphere(new Point3D(-39.5,60,20),7)
-                      //  .setEmissionColor(new Color(0,190,190))
-                       // .setMaterial(new Material().setkT(0.6).setkD(0.1).setkS(0.1).setnShininess(100)),
-        		        geometries.add(
+       		        geometries.add(
                 new Sphere(new Point3D(0,-40,50),3)
                         .setEmission(new Color(255,0,0))
                         .setMaterial(new Material().setkT(0.6).setkD(0.1).setkS(0.1).setnShininess(100)),
@@ -443,12 +204,12 @@ public class RivkaImage {
                    //  .setEmissionColor((new Color(brown)))
                    //  .setMaterial(new Material().setkD(1).setnShininess(50))
             //    ,
-                      //*******************************shelf*******************************//
+                      //*******************************shelf*******************************/
 
                       
                       
                         
-                       /*  
+                       
                          
                          new Cylinder(
                                         new Color(40, 40, 40),
@@ -551,7 +312,7 @@ public class RivkaImage {
 
                 //*************************objects on the shelf**********************/
 
-                 /*               new Cylinder(
+             /*                  new Cylinder(
                                         new Color(40, 40, 40),
                                         new Material().setkD(0.4).setkS(0.2).setnShininess(35).setkR(0),
                                         25,
@@ -695,6 +456,7 @@ public class RivkaImage {
 */
 
                 /////////           FLOOR - MIRROR                 ///////////
+  
                 new Polygon(
                 	     new Point3D(50,-40,0),
                                 new Point3D(-50,-40,0),
