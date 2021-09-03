@@ -204,7 +204,7 @@ public class RivkaImage {
                    //  .setEmissionColor((new Color(brown)))
                    //  .setMaterial(new Material().setkD(1).setnShininess(50))
             //    ,
-                      //*******************************shelf*******************************/
+                      //*******************************page_right*******************************/
 
                       
                       
@@ -309,10 +309,115 @@ public class RivkaImage {
                                         new Material().setkD(0.3).setkS(0.2).setnShininess(85).setkR(0.4),
                                         4,
                                         new Point3D(-40, 85, -185)),
+                                //*******************************page_left*******************************/
+
+                                
+                                
+                                
+                                
+                                
+                                new Cylinder(
+                                               new Color(40, 40, 40),
+                                               new Material().setkD(0.4).setkS(0.2).setnShininess(35).setkR(0),
+                                               2.5,
+                                               new Point3D(250, 85, -185),
+                                               new Point3D(40, 85, -185)),
+
+                                       new Cylinder(
+                                               new Color(40, 40, 40),
+                                               new Material().setkD(0.4).setkS(0.2).setnShininess(35).setkR(0),
+                                               2.5,
+                                               new Point3D(250, 85, -191),
+                                               new Point3D(40, 85, -191)),
+
+                                       new Cylinder(
+                                               new Color(40, 40, 40),
+                                               new Material().setkD(0.4).setkS(0.2).setnShininess(35).setkR(0),
+                                               2.5,
+                                               new Point3D(250, 85, -197),
+                                               new Point3D(40, 85, -197)),
+
+                                       new Cylinder(
+                                               new Color(40, 40, 40),
+                                               new Material().setkD(0.4).setkS(0.2).setnShininess(35).setkR(0),
+                                               2.5,
+                                               new Point3D(250, 85, -203),
+                                               new Point3D(40, 85, -203)),
+
+                                       new Cylinder(
+                                               new Color(40, 40, 40),
+                                               new Material().setkD(0.4).setkS(0.2).setnShininess(35).setkR(0),
+                                               2.5,
+                                               new Point3D(250, 85, -209),
+                                               new Point3D(40, 85, -209)),
+
+                                       new Cylinder(
+                                               new Color(40, 40, 40),
+                                               new Material().setkD(0.4).setkS(0.2).setnShininess(35).setkR(0),
+                                               2.5,
+                                               new Point3D(250, 85, -215),
+                                               new Point3D(40, 85, -215)),
+
+                                       new Cylinder(
+                                               new Color(40, 40, 40),
+                                               new Material().setkD(0.4).setkS(0.2).setnShininess(35).setkR(0),
+                                               2.5,
+                                               new Point3D(250, 85, -221),
+                                               new Point3D(40, 85, -221)),
+
+                                       new Cylinder(
+                                               new Color(40, 40, 40),
+                                               new Material().setkD(0.4).setkS(0.2).setnShininess(35).setkR(0),
+                                               2.5,
+                                               new Point3D(250, 85, -227),
+                                               new Point3D(40, 85, -227)),
+
+                                       new Cylinder(
+                                               new Color(40, 40, 40),
+                                               new Material().setkD(0.4).setkS(0.2).setnShininess(35).setkR(0),
+                                               2.5,
+                                               new Point3D(250, 85, -233),
+                                               new Point3D(40, 85, -233)),
+
+                                       new Cylinder(
+                                               new Color(40, 40, 40),
+                                               new Material().setkD(0.4).setkS(0.2).setnShininess(35).setkR(0),
+
+                                               2.5,
+                                               new Point3D(250, 85, -239),
+                                               new Point3D(40, 85, -239)),
+                                       new Cylinder(
+                                               new Color(40, 40, 40),
+                                               new Material().setkD(0.4).setkS(0.2).setnShininess(35).setkR(0),
+                                               2.5,
+                                               new Point3D(250, 85, -245),
+                                               new Point3D(40, 85, -245)),
+
+                                       new Cylinder(
+                                               new Color(40, 40, 40),
+                                               new Material().setkD(0.4).setkS(0.2).setnShininess(35).setkR(0),
+                                               2.5,
+                                               new Point3D(40, 85, -185),
+                                               new Point3D(40, 250, -185)),
+
+                                       new Cylinder(
+                                               new Color(40, 40, 40),
+                                              
+                                               new Material().setkD(0.4).setkS(0.2).setnShininess(35).setkR(0),
+                                               2.5,
+                                               new Point3D(40, 85, -185),
+                                               new Point3D(40, 85, -250)),
+
+                                       new Sphere(
+                                               new Color(40, 40, 40),
+                                              // new Material(0.3, 0.20, 85, 0.40, 0),
+                                               new Material().setkD(0.3).setkS(0.2).setnShininess(85).setkR(0.4),
+                                               4,
+                                               new Point3D(40, 85, -185)),
 
                 //*************************objects on the shelf**********************/
 
-             /*                  new Cylinder(
+                           new Cylinder(
                                         new Color(40, 40, 40),
                                         new Material().setkD(0.4).setkS(0.2).setnShininess(35).setkR(0),
                                         25,
@@ -350,7 +455,7 @@ public class RivkaImage {
                                   new Sphere(
                                               new Color(40, 40, 40),
                                           new Material().setkD(0.3).setkS(0.2).setnShininess(85).setkR(0.4),
-                                            //  new Material(0.3, 0.20, 85, 0.40, 0),
+                                            `//  new Material(0.3, 0.20, 85, 0.40, 0),
                                               8,
                                               new Point3D(125, 8, -50)),
 
@@ -526,8 +631,8 @@ public class RivkaImage {
                         new Polygon(
                                 new Point3D(40,-39,-14),
                                 new Point3D(-40,-39,-14),
-                                new Point3D(-40,-39,30),
-                                new Point3D(40, -39, 30)).
+                                new Point3D(-40,-39,15),
+                                new Point3D(40, -39, 15)).
                                 setEmission(new Color(20, 20, 20))
                                 .setMaterial(new Material().setkR(0.8).setkS(0.5)));
         		     /*   new Cylinder(
