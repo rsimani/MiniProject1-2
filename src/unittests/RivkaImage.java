@@ -266,7 +266,9 @@ public class RivkaImage {
                                       new Point3D(-50,100,-14),
                                      new Point3D(-50,100,0),
                                      new Point3D(50,100,0)).
-                            setEmission(new Color(java.awt.Color.BLACK
+                            setEmission(new Color(java.awt.Color.CYAN
+                            		
+                            		
                             		))
                              .setMaterial(new Material().setkS(0.8).setkR(0.5).setkD(1)),
    
