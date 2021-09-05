@@ -54,7 +54,7 @@ public class RivkaImage {
                    //  .setEmissionColor((new Color(brown)))
                    //  .setMaterial(new Material().setkD(1).setnShininess(50))
             //    ,
-                      //*******************************page_right*******************************/
+                      //*******************************page_right********************************/
 
                       
                       
