@@ -20,6 +20,7 @@ public class Color {
 	Black color = (0,0,0);*/
 	public static final Color BLACK = new Color();
 	public static final Color WHITE = new Color();
+	private static final float DIFF = 20;
 
 	/**
 	 * Default constructor - to generate Black Color (privately)
@@ -123,6 +124,10 @@ public class Color {
 		if (k < 1)
 			throw new IllegalArgumentException("Can't scale a color by a by a number lower than 1");
 		return new Color(r / k, g / k, b / k);
+	}
+	
+	public boolean isSimilar(Color other) {
+		return Math.abs(r - other.r) < DIFF && Math.abs(g - other.g) < DIFF && Math.abs(b - other.b) < DIFF;
 	}
 
 

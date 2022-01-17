@@ -5,6 +5,7 @@ import primitives.*;
 
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.MissingResourceException;
@@ -67,6 +68,18 @@ public class Render {
      * printing progress percentage
      */
     private boolean print = false;
+    
+    private double minimalScale = 1;    
+
+
+	public double getMinimalScale() {
+		return minimalScale;
+	}
+
+	public Render setMinimalScale(double minimalScale) {
+		this.minimalScale = minimalScale;
+		return this;
+	}
   
     /**
      * Set multi-threading <br>
@@ -327,12 +340,57 @@ public class Render {
         /**
          * ray from camera to the specific pixel
          */
-        Ray ray = camera.constructRayThroughPixel(nX, nY, col, row);
+        //Ray ray = camera.constructRayThroughPixel(nX, nY, col, row);
         /**
          * this ray's color
          */
-        Color color = tracer.traceRay(ray);
+        //Color color = tracer.traceRay(ray);
+    	Color color = calcPixelColor(nX, nY, camera.getCenterOfPixel(nX, nY, col, row), 1);
         imageWriter.writePixel(col, row, color);
+    }
+    
+    private Color calcPixelColor(int nX, int nY, Point3D center, double scale) {
+    	List<Color> colors = new ArrayList<Color>();
+    	
+    	for (Ray ray : camera.getRaysToPixel(nX, nY, center, scale)) {
+    		colors.add(tracer.traceRay(ray));
+    	}
+    	
+    	boolean areAllSimilar = true;
+    	for (Color c1 : colors)
+    	{
+    		for (Color c2: colors)
+    		{
+    			if (!c1.isSimilar(c2))
+    			{
+    				areAllSimilar = false;
+    				break;
+    			}
+    		}
+    		if (!areAllSimilar) {
+    			break;
+    		}
+    	}
+    	
+    	Color finalColor = Color.BLACK;
+    	
+    	if(!areAllSimilar && scale / 4 >= minimalScale)
+    	{
+    		List<Point3D> centers = camera.getCornersOfPixel(nX, nY, center, scale / 4);
+    		colors = new ArrayList<Color>();
+    		for (Point3D _center: centers) {
+    			colors.add(calcPixelColor(nX, nY, _center, scale / 4));
+    		}
+    	}
+    	
+    	for (Color c : colors) 
+		{
+			finalColor = finalColor.add(c);
+		}
+		finalColor = finalColor.reduce(colors.size());
+    	
+    	return finalColor;
+    	
     }
 
     /**

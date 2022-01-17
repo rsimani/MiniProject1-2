@@ -17,7 +17,7 @@ public class ex_7_image_rivka {
 
     private Scene.SceneBuilder sceneBuilder = new Scene.SceneBuilder("Test scene");
 	private Camera camera = new Camera(new Point3D(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
-			.setViewPlaneSize(200, 200).setDistance(1000);
+			.setViewPlaneSize(200, 200).setDistance(600);
 
     private Render render = new Render();
     /**
@@ -103,8 +103,8 @@ public class ex_7_image_rivka {
                                new Point3D(-50,100,0),
                                new Point3D(50,100,0)).
                       setEmission(new Color(0, 190, 190))
-                       .setMaterial(new Material().setkS(0.8).setkR(0.5)));
-               
+                       //.setMaterial(new Material().dsetkS(0.8).setkR(0.5)));
+  .setMaterial(new Material().setkD(0.5).setkS(0.5).setnShininess(30).setkR(1)));
               
         // create 10 spheres random with transparency
         		      

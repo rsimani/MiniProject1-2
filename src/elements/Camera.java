@@ -255,6 +255,53 @@ public class Camera
 		return new Ray(p0, Vij);
 
 	}
+	
+	public Point3D getCenterOfPixel(int nX, int nY, int j, int i) {
+		Point3D Pc = p0.add(vto.scale(distance));
+
+		double Ry = height / nY;
+		double Rx = width / nX;
+		double yi = (i - (nY - 1) / 2d) * Ry;
+		double xj = (j - (nX - 1) / 2d) * Rx;
+
+		Point3D Pij = Pc;
+
+		if (!isZero(xj)) {
+			Pij = Pij.add(vright.scale(xj));
+		}
+		if (!isZero(yi)) {
+			Pij = Pij.add(vup.scale(-yi));
+		}
+		
+		return Pij;
+	}
+	
+	public List<Point3D> getCornersOfPixel(int nX, int nY, Point3D center, double scale) {
+		List<Point3D> corners = new ArrayList<Point3D>();
+		double Ry = height / nY;
+		double Rx = width / nX;
+		
+		corners.add(center.add(vright.scale(Rx*scale).add(vup.scale(Ry*scale))));
+		corners.add(center.add(vright.scale(-Rx*scale).add(vup.scale(Ry*scale))));
+		corners.add(center.add(vright.scale(Rx*scale).add(vup.scale(-Ry*scale))));
+		corners.add(center.add(vright.scale(-Rx*scale).add(vup.scale(-Ry*scale))));
+		
+		
+		return corners;
+	}
+	
+	public List<Ray> getRaysToPixel(int nX, int nY, Point3D center, double scale) {
+		List<Ray> rays = new ArrayList<Ray>();
+		List<Point3D> corners = getCornersOfPixel(nX, nY, center, scale);
+		rays.add(new Ray(p0, center.subtract(p0)));
+		
+		for (Point3D corner : corners) {
+			rays.add(new Ray(p0, corner.subtract(p0)));
+		}
+		
+		return rays;
+		
+	}
 
     /**
      *gets the middle of pixel

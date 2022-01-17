@@ -364,9 +364,9 @@ public class RivkaImage {
                 .setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.02));
         Scene scene = sceneBuilder.build();
 
-        ImageWriter imageWriter = new ImageWriter("rivka_picture", 600, 600);
+        ImageWriter imageWriter = new ImageWriter("rivka_picture_after", 600, 600);
         render.setImageWriter(imageWriter).setSuperS(true).setMultithreading(3).setDebugPrint().setAdaptiveSS(false)//
-                .setCamera(camera).setRayTracer(new RayTracerBasic(scene));
+                .setCamera(camera).setRayTracer(new RayTracerBasic(scene)).setMinimalScale(1.0/256);
 
         render.renderImage();
         render.writeToImage();
