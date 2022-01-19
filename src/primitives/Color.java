@@ -120,13 +120,15 @@ public class Color {
 	 * @param k reduction factor
 	 * @return new Color object which is the result of the operation
 	 */
-	public Color reduce(double k) {
+	public Color reduce(double k) 
+	{
 		if (k < 1)
 			throw new IllegalArgumentException("Can't scale a color by a by a number lower than 1");
 		return new Color(r / k, g / k, b / k);
 	}
-	
-	public boolean isSimilar(Color other) {
+	///////this function check if the colors is the same//////////////
+	public boolean isSimilar(Color other) 
+	{
 		return Math.abs(r - other.r) < DIFF && Math.abs(g - other.g) < DIFF && Math.abs(b - other.b) < DIFF;
 	}
 

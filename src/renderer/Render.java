@@ -72,7 +72,8 @@ public class Render {
     private double minimalScale = 1;    
 
 
-	public double getMinimalScale() {
+	public double getMinimalScale() 
+	{
 		return minimalScale;
 	}
 
@@ -109,7 +110,8 @@ public class Render {
      *
      * @return the Render object itself
      */
-    public Render setDebugPrint() {
+    public Render setDebugPrint() 
+    {
         print = true;
         return this;
     }
@@ -121,7 +123,8 @@ public class Render {
      * There is a main follow up object and several secondary objects - one in each
      * thread.
      */
-    private class Pixel {
+    private class Pixel
+    {
         /**
          * the amount of pixel rows
          */
@@ -161,7 +164,8 @@ public class Render {
          * @param maxRows the amount of pixel rows
          * @param maxCols the amount of pixel columns
          */
-        public Pixel(int maxRows, int maxCols) {
+        public Pixel(int maxRows, int maxCols) 
+        {
             this.maxRows = maxRows;
             this.maxCols = maxCols;
             this.pixels = (long) maxRows * maxCols;
@@ -173,7 +177,8 @@ public class Render {
         /**
          * Default constructor for secondary Pixel objects
          */
-        public Pixel() {
+        public Pixel()
+        {
         }
 
         /**
@@ -348,15 +353,18 @@ public class Render {
     	Color color = calcPixelColor(nX, nY, camera.getCenterOfPixel(nX, nY, col, row), 1);
         imageWriter.writePixel(col, row, color);
     }
-    
+    //////this function calc the color of pixel//////
     private Color calcPixelColor(int nX, int nY, Point3D center, double scale) {
     	List<Color> colors = new ArrayList<Color>();
-    	
-    	for (Ray ray : camera.getRaysToPixel(nX, nY, center, scale)) {
+    	///enter to list the colors of the corners and the center
+    	for (Ray ray : camera.getRaysToPixel(nX, nY, center, scale)) 
+    	{
     		colors.add(tracer.traceRay(ray));
     	}
     	
     	boolean areAllSimilar = true;
+    	///check if all the colors are similar
+    	//if there are at list 2 diffrent colors we break
     	for (Color c1 : colors)
     	{
     		for (Color c2: colors)
@@ -367,22 +375,28 @@ public class Render {
     				break;
     			}
     		}
-    		if (!areAllSimilar) {
+    		if (!areAllSimilar) 
+    		{
     			break;
     		}
     	}
     	
     	Color finalColor = Color.BLACK;
-    	
+    	///if the colors are not similar and we still don't came to the minimal scale we define
     	if(!areAllSimilar && scale / 4 >= minimalScale)
     	{
+    		////we find the centers of the 4 new Squares
+    		////by make a square in the 1/4 side of the pixel and his center point
+    		
     		List<Point3D> centers = camera.getCornersOfPixel(nX, nY, center, scale / 4);
     		colors = new ArrayList<Color>();
-    		for (Point3D _center: centers) {
+    		for (Point3D _center: centers) 
+    		{
+    			/////here we make the RECURSION to calc the color of the new Square
     			colors.add(calcPixelColor(nX, nY, _center, scale / 4));
     		}
     	}
-    	
+    	/////here we calculate the average of the colors 
     	for (Color c : colors) 
 		{
 			finalColor = finalColor.add(c);

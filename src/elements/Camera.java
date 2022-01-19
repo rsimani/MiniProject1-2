@@ -255,7 +255,7 @@ public class Camera
 		return new Ray(p0, Vij);
 
 	}
-	
+	///////////////return the point center of the pixel////////////////////
 	public Point3D getCenterOfPixel(int nX, int nY, int j, int i) {
 		Point3D Pc = p0.add(vto.scale(distance));
 
@@ -275,7 +275,7 @@ public class Camera
 		
 		return Pij;
 	}
-	
+	/////////////////////////return the corners of the pixel/////////////////////////
 	public List<Point3D> getCornersOfPixel(int nX, int nY, Point3D center, double scale) {
 		List<Point3D> corners = new ArrayList<Point3D>();
 		double Ry = height / nY;
@@ -289,13 +289,15 @@ public class Camera
 		
 		return corners;
 	}
-	
-	public List<Ray> getRaysToPixel(int nX, int nY, Point3D center, double scale) {
+	///////////return 5 rays of the pixel the center+4 corners////////////////
+	public List<Ray> getRaysToPixel(int nX, int nY, Point3D center, double scale) 
+	{
 		List<Ray> rays = new ArrayList<Ray>();
 		List<Point3D> corners = getCornersOfPixel(nX, nY, center, scale);
 		rays.add(new Ray(p0, center.subtract(p0)));
 		
-		for (Point3D corner : corners) {
+		for (Point3D corner : corners) 
+		{
 			rays.add(new Ray(p0, corner.subtract(p0)));
 		}
 		
@@ -312,7 +314,8 @@ public class Camera
      *
      * @return ray in the middle of the pixel
      */
-    public Ray constructPixelCenterRay(Ray ray, double nX, double nY){
+    public Ray constructPixelCenterRay(Ray ray, double nX, double nY)
+    {
 
         // pixel height
         double height = alignZero(this.height / nY);
